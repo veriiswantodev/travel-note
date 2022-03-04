@@ -103,7 +103,7 @@ class UserController extends Controller
         $user->nik = $request->nik;
         $user->name = $request->name;
         $user->password = $request->password;
-        $user->email = $request->email;
+        $user->email = bcrypt($request->email);
         $user->roles = $request->roles;
 
         $user->update();

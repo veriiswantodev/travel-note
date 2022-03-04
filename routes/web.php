@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/', fn() => redirect()->route('login'));
 
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     // Route::get('/perjalanan/data', [PerjalananController::class, 'data'])->name('perjalanan.data');
 
@@ -39,6 +39,6 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
     Route::post('/perjalanan/{id}/update', [PerjalananController::class, 'update'])->name('perjalanan.update');
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:user']], function(){
+Route::group(['middleware' => ['auth', 'checkRole:admin,user']], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
